@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JsonUtils {
@@ -15,11 +16,11 @@ public class JsonUtils {
     public static Sandwich parseSandwichJson(String json) {
         /* Initialize variable used in Sandwitch constructor */
         String mainName;
-        List<String> alsoKnownAs = null;
+        List<String> alsoKnownAs = new ArrayList<>();
         String placeOfOrigin;
         String description;
         String image;
-        List<String> ingredients = null;
+        List<String> ingredients = new ArrayList<>();
 
         JSONObject rootObject;
         try {
