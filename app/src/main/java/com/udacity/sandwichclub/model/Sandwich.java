@@ -1,5 +1,11 @@
 package com.udacity.sandwichclub.model;
 
+import android.databinding.BindingAdapter;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
+import com.udacity.sandwichclub.R;
+
 import java.util.List;
 
 public class Sandwich {
@@ -34,8 +40,14 @@ public class Sandwich {
         this.mainName = mainName;
     }
 
-    public List<String> getAlsoKnownAs() {
-        return alsoKnownAs;
+    public String getAlsoKnownAs() {
+        StringBuilder alsoKnownAs = new StringBuilder();
+        for( String i: this.alsoKnownAs){
+            alsoKnownAs.append(i);
+            if (this.alsoKnownAs.indexOf(i) != this.alsoKnownAs.size()-1)
+                alsoKnownAs.append("\n");
+        }
+        return alsoKnownAs.toString();
     }
 
     public void setAlsoKnownAs(List<String> alsoKnownAs) {
@@ -66,8 +78,22 @@ public class Sandwich {
         this.image = image;
     }
 
-    public List<String> getIngredients() {
-        return ingredients;
+    @BindingAdapter({"bind:image"})
+    public static void loadImage(ImageView view, String image){
+        Picasso.with(view.getContext())
+                .load(image)
+                .placeholder(R.drawable.placeholder)
+                .into(view);
+    }
+
+    public String getIngredients() {
+        StringBuilder ingredients = new StringBuilder();
+        for(String i: this.ingredients){
+            ingredients.append(i);
+            if (this.ingredients.indexOf(i) != this.ingredients.size()-1)
+                ingredients.append("\n");
+        }
+        return ingredients.toString();
     }
 
     public void setIngredients(List<String> ingredients) {
